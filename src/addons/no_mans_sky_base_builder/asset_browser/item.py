@@ -1,6 +1,8 @@
 import json
 import os
 
+import logging
+
 try:
   from PySide6 import QtCore, QtGui, QtWidgets
 except ImportError:
@@ -25,6 +27,8 @@ class Thumb(QtWidgets.QLabel):
             pixmap = QtGui.QPixmap(icon_path)
             scaled = pixmap.scaled(THUMB_SIZE, THUMB_SIZE, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
             self.setPixmap(scaled)
+        else:
+            logging.debug('Missing icon for %s', icon_path)
         self.setMinimumSize(QtCore.QSize(THUMB_SIZE, THUMB_SIZE))
         self.setMaximumSize(QtCore.QSize(TEXT_WIDTH, THUMB_SIZE))
         self.setAlignment(QtCore.Qt.AlignCenter)

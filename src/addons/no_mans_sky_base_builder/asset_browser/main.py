@@ -17,6 +17,8 @@ try:
 except ImportError:
   from PySide2 import QtCore, QtGui, QtWidgets
 
+import logging
+
 FILE_DIR = os.path.dirname(os.path.realpath(__file__))
 SEND_SNIPPET = os.path.join(FILE_DIR, "build_part_snippet.txt")
 EDIT_PRESET_SNIPPET = os.path.join(FILE_DIR, "edit_preset_snippet.txt")
@@ -144,9 +146,12 @@ class AssetBrowser(QtWidgets.QMainWindow):
                         for item in items:
                             if isinstance(item, str):
                                 # Add to tab.
+                                item_label = NICE_NAME_DATA.get(item)
+                                if (item_label == None):
+                                    logging.debug('Missing name for %s', item)
                                 item_widget = Item(
                                     item_id=item,
-                                    label=NICE_NAME_DATA.get(item, item),
+                                    label=item_label or item,
                                     parent=title_label,
                                 )
                                 title_label.addWidget(item_widget)
@@ -156,7 +161,7 @@ class AssetBrowser(QtWidgets.QMainWindow):
                                 # Add to search frame.
                                 search_item_widget = Item(
                                     item_id=item,
-                                    label=NICE_NAME_DATA.get(item, item),
+                                    label=item_label or item,
                                     parent=title_label,
                                 )
                                 self.search_frame_layout.addWidget(search_item_widget)
