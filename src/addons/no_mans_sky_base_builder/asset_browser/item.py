@@ -9,6 +9,7 @@ except ImportError:
 import asset_browser.icons.icons
 
 THUMB_SIZE = 55
+TEXT_WIDTH = 70
 ITEM_SIZE = 80
 FONT_SIZE = 7
 
@@ -25,7 +26,7 @@ class Thumb(QtWidgets.QLabel):
             scaled = pixmap.scaled(THUMB_SIZE, THUMB_SIZE, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
             self.setPixmap(scaled)
         self.setMinimumSize(QtCore.QSize(THUMB_SIZE, THUMB_SIZE))
-        self.setMaximumSize(QtCore.QSize(THUMB_SIZE, THUMB_SIZE))
+        self.setMaximumSize(QtCore.QSize(TEXT_WIDTH, THUMB_SIZE))
         self.setAlignment(QtCore.Qt.AlignCenter)
 
 class Item(QtWidgets.QFrame):
@@ -54,8 +55,8 @@ class Item(QtWidgets.QFrame):
         self.label_widget.setWordWrap(True)
         font = QtGui.QFont("Decorative", FONT_SIZE)
         self.label_widget.setFont(font)
-        self.label_widget.setMinimumWidth(THUMB_SIZE)
-        self.label_widget.setMaximumWidth(THUMB_SIZE)
+        self.label_widget.setMinimumWidth(TEXT_WIDTH)
+        self.label_widget.setMaximumWidth(TEXT_WIDTH)
 
     def _layout(self):
         self.main_layout.addWidget(self.thumb, QtCore.Qt.AlignCenter)
