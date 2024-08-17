@@ -41,7 +41,7 @@ class Item(QtWidgets.QFrame):
         self.setMaximumSize(QtCore.QSize(ITEM_SIZE, ITEM_SIZE))
         self.main_layout = QtWidgets.QVBoxLayout(self)
         self.main_layout.setContentsMargins(5, 5, 5, 5)
-        self.main_layout.setAlignment(QtCore.Qt.AlignCenter | QtCore.Qt.AlignTop)
+        self.main_layout.setAlignment(QtCore.Qt.AlignHCenter | QtCore.Qt.AlignTop)
 
         self._build_ui()
         self._layout()
