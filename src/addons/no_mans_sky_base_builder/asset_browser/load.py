@@ -2,6 +2,14 @@ import os
 import subprocess
 import sys
 
+import logging
+if len(sys.argv) > 1 and sys.argv[1] == 'debug':
+  LOG_LEVEL = logging.DEBUG
+  sys.argv = sys.argv[0:1] + sys.argv[2:-1]
+else:
+  LOG_LEVEL = logging.WARNING
+logging.basicConfig(stream=sys.stderr, level=LOG_LEVEL)
+
 # Check and install dependencies.
 PYTHON_EXE_PATH = sys.executable
 PYTHON_DIR_PATH = os.path.dirname(PYTHON_EXE_PATH)
