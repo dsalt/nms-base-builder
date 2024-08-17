@@ -11,7 +11,7 @@ python_package_dir = os.path.join(repo_dir, "src", "addons", "no_mans_sky_base_b
 def build_recursive_file_list(dir_path):
     return_list = []
     for thing in os.listdir(dir_path):
-        if thing == "__pycache__":
+        if thing == "__pycache__" or thing.endswith('~'):
             continue
 
         full_path = os.path.join(dir_path, thing)
